@@ -28,20 +28,21 @@ public class Elevator {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Integer> listOfFloor;
 		int[] destination = new int[maxF];
-		
+	// method to go up	
 	void up() {
 		System.out.println( curF++ + "F" + " Going up...");
 	}
-	
+	//method to go down
 	void down() {
 		System.out.println( curF-- + "F" + " Going down...");
 	}
-	
+	//method to delay the running screen so it is easier for users to keep track
 	void delay(int ms) {
 	try {
 		Thread.sleep(ms);}
 	catch (Exception e) {};
 	}
+	// This method is the algorithm I used to prioritize the nearest destination. 
 	int findShortest() {
 		int shortest = Math.abs(curF - listOfFloor.get(0));
 		int id = 0;
@@ -56,7 +57,7 @@ public class Elevator {
 		listOfFloor.set(id,100);
 		return shortest;
 	}
-	
+	// This is where every function of the elevator is called
 	void startElevator() {
 		for(int i = 0; i < listOfFloor.size(); i++) {
 			int shortest = findShortest();
@@ -71,6 +72,7 @@ public class Elevator {
 	}
 		askPassenger();
 	}
+	// this method ask for the number of passenger and check that value if it is available or not. 
 	void askPassenger() {
 		isDoorOpen = false;
 		System.out.println("Door is opening...");
@@ -95,6 +97,7 @@ public class Elevator {
 		startElevator();
 	}
 	
+	// This method asks each passenger with different id to put in the destination they want to go. And return the destination 
 	int askFloor(int id) {
 		boolean valid = false;
 		int floor = 0;
